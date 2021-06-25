@@ -2,8 +2,19 @@ FROM dalibo/buildpack:centos7
 
 RUN set -ex; \
     yum -q -y install \
+        gcc \
         rpm-build \
+        ruby-devel \
         yum-utils \
     ; \
     yum clean all ; \
+    :
+
+# latest ffi are not compatible with centos7 ruby version.
+RUN set -ex; \
+    ruby --version; \
+    gem install --verbose --version "<1.13" --no-ri --no-rdoc ffi; \
+    gem install --verbose --version "<1.8" --no-ri --no-rdoc git; \
+    gem install --verbose --version "<1.13" --no-ri --no-rdoc fpm; \
+    fpm --version; \
     :
