@@ -9,4 +9,4 @@ alpine centos8 centos7 centos6 bullseye buster stretch:
 	.
 
 push-%:
-	docker push $*
+	docker push dalibo/buildpack-pkg:$*
