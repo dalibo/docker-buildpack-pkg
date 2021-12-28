@@ -1,0 +1,9 @@
+FROM dalibo/buildpack:rockylinux8
+
+RUN set -ex; \
+    yum -q -y install \
+        rpm-build \
+        yum-utils \
+    ; \
+    yum clean all ; \
+    :
