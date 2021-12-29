@@ -8,6 +8,7 @@ This image is built from
 
 ## Tags
 
+- `bookworm`.
 - `bullseye`.
 - `buster`.
 - `centos6`.

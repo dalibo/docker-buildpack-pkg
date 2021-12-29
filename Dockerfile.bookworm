@@ -1,0 +1,37 @@
+FROM dalibo/buildpack:bookworm
+
+RUN set -ex; \
+    apt-get update -y; \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        lsb-release \
+        python3-pip \
+        ruby \
+        ruby-dev \
+        rubygems \
+    ; \
+    apt-get clean; \
+    rm -rf \
+        /usr/share/postgresql/*/man \
+        /var/lib/apt/lists/* \
+        /var/log/apt \
+        /var/log/dpkg.log \
+        /var/log/alternatives.log \
+    ; \
+    :
+
+RUN set -ex; \
+    pip3 --no-cache-dir install --ignore-installed pip setuptools; \
+    hash -r pip3; \
+    pip3 --no-cache-dir install --upgrade \
+        pep440deb \
+        "virtualenv<20" \
+        virtualenv-tools \
+    ; \
+    :
+
+RUN set -ex; \
+    gem install --no-document fpm; \
+    gem cleanup; \
+    fpm --version; \
+    :
