@@ -1,0 +1,45 @@
+FROM dalibo/buildpack:stretch
+
+RUN set -ex; \
+    apt-get update -y; \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        lsb-release \
+        python2.7 \
+        python-pip \
+        python3.5 \
+        python3-pip \
+        ruby \
+        ruby-dev \
+        rubygems \
+    ; \
+    apt-get clean; \
+    rm -rf \
+        /usr/share/postgresql/*/man \
+        /var/lib/apt/lists/* \
+        /var/log/apt \
+        /var/log/dpkg.log \
+        /var/log/alternatives.log \
+    ; \
+    :
+
+RUN set -ex; \
+    pip2 --no-cache-dir install --upgrade --ignore-installed pip; \
+    hash -r pip2; \
+    pip2 --no-cache-dir install --upgrade setuptools wheel; \
+    :
+
+RUN set -ex; \
+    pip3 --no-cache-dir install --ignore-installed pip setuptools; \
+    hash -r pip3; \
+    pip3 --no-cache-dir install --upgrade \
+        pep440deb \
+        "virtualenv<20" \
+        virtualenv-tools \
+    ; \
+    :
+
+RUN set -ex; \
+    gem install --no-ri --no-rdoc fpm; \
+    gem cleanup; \
+    :
