@@ -8,6 +8,7 @@ This image is built from
 
 ## Tags
 
+- `buster`.
 - `centos6`.
 - `centos7`.
 - `centos8`.
