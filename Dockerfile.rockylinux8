@@ -4,6 +4,10 @@ RUN set -ex; \
     yum -q -y install \
         rpm-build \
         yum-utils \
+        python2 \
+        python36 \
+        python38 \
+        python3-virtualenv \
     ; \
     yum clean all ; \
     :
