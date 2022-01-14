@@ -5,6 +5,7 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends \
         build-essential \
         lsb-release \
+        python2.7 \
         python3-pip \
         ruby \
         ruby-dev \
@@ -18,6 +19,12 @@ RUN set -ex; \
         /var/log/dpkg.log \
         /var/log/alternatives.log \
     ; \
+    :
+
+RUN set -ex; \
+    curl -sSL https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7 ; \
+    pip2 --version ; \
+    rm -rf ~/.cache; \
     :
 
 RUN set -ex; \
