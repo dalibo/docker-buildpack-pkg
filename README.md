@@ -15,4 +15,5 @@ This image is built from
 - `centos7`.
 - `jessie`.
 - `rockylinux8`.
+- `rockylinux9`.
 - `stretch`.
