@@ -13,15 +13,5 @@ RUN set -ex; \
     yum clean all ; \
     :
 
-# latest ffi are not compatible with centos7 ruby version.
-RUN set -ex; \
-    ruby --version; \
-    gem install --verbose --version "<3.22" --no-ri --no-rdoc backports; \
-    gem install --verbose --version "<1.13" --no-ri --no-rdoc ffi; \
-    gem install --verbose --version "<1.8" --no-ri --no-rdoc git; \
-    gem install --verbose --version "<1.13" --no-ri --no-rdoc fpm; \
-    fpm --version; \
-    :
-
 ADD rpmbuild.sh /usr/local/bin/rpmbuild.sh
 ENTRYPOINT ["/usr/local/bin/rpmbuild.sh"]
