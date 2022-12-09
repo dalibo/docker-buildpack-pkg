@@ -5,6 +5,9 @@ Packaging utils for building PostgreSQL tool packages.
 This image is built from
 [dalibo/buildpack](https://hub.dalibo.com/r/dalibo/buildpack).
 
+RHEL entrypoint accepts SPEC and Source files as parameters.
+Outputs all RPMS in `_build/rpm<RHEL>/<specname>/`.
+
 
 ## Tags
 

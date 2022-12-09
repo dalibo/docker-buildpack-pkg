@@ -22,3 +22,6 @@ RUN set -ex; \
     gem install --verbose --version "<1.13" --no-ri --no-rdoc fpm; \
     fpm --version; \
     :
+
+ADD rpmbuild.sh /usr/local/bin/rpmbuild.sh
+ENTRYPOINT ["/usr/local/bin/rpmbuild.sh"]
