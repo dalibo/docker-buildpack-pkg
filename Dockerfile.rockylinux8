@@ -1,5 +1,8 @@
 FROM dalibo/buildpack:rockylinux8
 
+ADD rpmbuild.sh /usr/local/bin/rpmbuild.sh
+ENTRYPOINT /usr/local/bin/rpmbuild.sh
+
 RUN set -ex; \
     yum -q -y install \
         rpm-build \
