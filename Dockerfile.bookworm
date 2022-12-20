@@ -35,3 +35,18 @@ RUN set -ex; \
     gem cleanup; \
     fpm --version; \
     :
+
+RUN set -ex; \
+    curl --location --remote-name --output-dir /tmp https://github.com/goreleaser/nfpm/releases/download/v2.22.2/nfpm_amd64.deb ; \
+    apt-get update -y; \
+    apt-get install -y --no-install-recommends /tmp/nfpm_amd64.deb; \
+    apt-get clean; \
+    rm -rf \
+        /tmp/nfpm_amd64.deb \
+        /var/lib/apt/lists/* \
+        /var/log/apt \
+        /var/log/dpkg.log \
+        /var/log/alternatives.log \
+    ; \
+    nfpm --version; \
+    :
