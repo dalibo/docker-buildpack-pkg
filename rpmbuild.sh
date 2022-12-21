@@ -45,7 +45,7 @@ done
 # EXPORT
 
 ownership="$(stat -c %u:%g "$SPEC")"
-destdir="$(rpm --eval "$BUILDDIR/rpms%{rhel}/$basespec/")"
+destdir="$(rpm --eval "$BUILDDIR/rhel%{rhel}/$basespec/")"
 mkdir -p "$destdir"
 chown -v "$ownership" "${destdir%/*/*}" "${destdir%/*}"
 cp -avf "${rpms[@]}" "$destdir"
