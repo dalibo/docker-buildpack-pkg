@@ -2,7 +2,6 @@ FROM dalibo/buildpack:rockylinux8
 
 RUN set -ex; \
     yum -q -y install \
-        https://download.postgresql.org/pub/repos/yum/reporpms/EL-8-x86_64/pgdg-redhat-repo-latest.noarch.rpm \
         rpm-build \
         yum-utils \
         python2 \
