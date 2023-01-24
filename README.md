@@ -16,6 +16,7 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 - `buster`.
 - `centos6`.
 - `centos7`.
+- `jammy`.
 - `jessie`.
 - `rockylinux8`.
 - `rockylinux9`.
