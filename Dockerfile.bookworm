@@ -31,9 +31,7 @@ RUN set -ex; \
     :
 
 RUN set -ex; \
-    pip3 --no-cache-dir install --ignore-installed pip setuptools; \
-    hash -r pip3; \
-    pip3 --no-cache-dir install --upgrade \
+    pip3 --no-cache-dir install --break-system-packages --upgrade \
         pep440deb \
         "virtualenv<20" \
         virtualenv-tools \
