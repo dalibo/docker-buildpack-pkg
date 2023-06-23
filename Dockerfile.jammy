@@ -17,6 +17,7 @@ RUN set -ex; \
     apt-get update -y; \
     apt-get install -y --no-install-recommends \
         build-essential \
+        python3-pip \
         lsb-release \
     ; \
     apt-get clean; \
@@ -26,6 +27,12 @@ RUN set -ex; \
         /var/log/apt \
         /var/log/dpkg.log \
         /var/log/alternatives.log \
+    ; \
+    :
+
+RUN set -ex; \
+    pip3 --no-cache-dir install  --upgrade \
+        pep440deb \
     ; \
     :
 
