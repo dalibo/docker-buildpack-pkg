@@ -1,7 +1,7 @@
 FROM dalibo/buildpack:rockylinux9
 
 RUN set -ex; \
-    yum -q -y install \
+    /usr/local/bin/retry yum -q -y install \
         rpm-build \
         yum-utils \
         python3 \
