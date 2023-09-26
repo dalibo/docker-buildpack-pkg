@@ -3,6 +3,7 @@ FROM dalibo/buildpack:rockylinux8
 RUN set -ex; \
     yum -q -y install \
         rpm-build \
+        rpm-sign \
         yum-utils \
         python2 \
         python36 \

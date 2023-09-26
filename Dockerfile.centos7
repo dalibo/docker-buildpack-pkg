@@ -7,6 +7,7 @@ RUN set -ex; \
         python36-devel \
         python36-virtualenv \
         rpm-build \
+        rpm-sign \
         ruby-devel \
         yum-utils \
     ; \
