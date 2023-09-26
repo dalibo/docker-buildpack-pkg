@@ -33,10 +33,19 @@ sudo -u testuser rpmbuild \
     --clean \
     --define "_topdir $topdir" \
     -bb "$SPEC"
+rpms=( "$topdir"/RPMS/*/*.rpm )
+
+# SIGN
+
+if [ -v GPG_PRIVATE_KEY ] ; then
+    gpg --import <<<"$GPG_PRIVATE_KEY"
+    uid="$(gpg --with-colons --list-keys | grep --max-count=1 --only-matching --perl-regexp '^uid:.+[0-9A-Z]::\K([^:]+)')"
+    rpm --delsign "${rpms[@]}"
+    rpm --addsign --define "_gpg_name $uid" "${rpms[@]}"
+fi
 
 # VERIFY
 
-rpms=( "$topdir"/RPMS/*/*.rpm )
 retry yum install -y "${rpms[@]}"
 for rpm in "${rpms[@]}" ; do
     rpm -vv --verify -p "${rpm}"
