@@ -41,7 +41,7 @@ if [ -v GPG_PRIVATE_KEY ] ; then
     gpg --batch --import <<<"$GPG_PRIVATE_KEY"
     uid="$(gpg --with-colons --list-keys | grep --max-count=1 --only-matching --perl-regexp '^uid:.+[0-9A-Z]::\K([^:]+)')"
     rpm --delsign "${rpms[@]}"
-    rpm --addsign --define "_gpg_name $uid" "${rpms[@]}"
+    rpm --define '__gpg /usr/bin/gpg2 --batch' --addsign --define "_gpg_name $uid" "${rpms[@]}"
 fi
 
 # VERIFY
