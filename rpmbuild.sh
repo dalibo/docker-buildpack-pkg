@@ -38,10 +38,11 @@ rpms=( "$topdir"/RPMS/*/*.rpm )
 # SIGN
 
 if [ -v GPG_PRIVATE_KEY ] ; then
+    export GPG_TTY=
     gpg --batch --import <<<"$GPG_PRIVATE_KEY"
     uid="$(gpg --with-colons --list-keys | grep --max-count=1 --only-matching --perl-regexp '^uid:.+[0-9A-Z]::\K([^:]+)')"
     rpm --delsign "${rpms[@]}"
-    rpm --define '__gpg /usr/bin/gpg2 --batch' --addsign --define "_gpg_name $uid" "${rpms[@]}"
+    rpm --addsign --define '__gpg /usr/bin/gpg2 --batch' --define "_gpg_name $uid" "${rpms[@]}"
 fi
 
 # VERIFY
