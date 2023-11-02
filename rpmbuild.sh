@@ -54,6 +54,7 @@ if [ -v GPG_PRIVATE_KEY ] ; then
 
     # test signature
     gpg --armor --export "$uid" > /etc/pki/rpm-gpg/RPM-GPG-KEY-RPMBUILD
+    rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-RPMBUILD
     rpm --checksig "${rpms[@]}"
 fi
 
