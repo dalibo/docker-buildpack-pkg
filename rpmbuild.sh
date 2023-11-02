@@ -41,7 +41,16 @@ if [ -v GPG_PRIVATE_KEY ] ; then
     export GPG_TTY=
     gpg --batch --import <<<"$GPG_PRIVATE_KEY"
     uid="$(gpg --with-colons --list-keys | grep --max-count=1 --only-matching --perl-regexp '^uid:.+[0-9A-Z]::\K([^:]+)')"
-    rpm --addsign --define '__gpg /usr/bin/gpg2 --batch' --define "_gpg_name $uid" "${rpms[@]}"
+
+    if [ -v GPG_PASSPHRASE ] ; then
+        echo "allow-preset-passphrase" >> ~/.gnupg/gpg-agent.conf
+        gpg-connect-agent reloadagent /bye
+        grip="$(gpg --with-colons --with-keygrip --list-keys | grep --max-count=1 --only-matching  --perl-regexp '^grp:+\K[^:]+')"
+        # Avoid leaking secret by sending through stdin.
+        xargs -I% /usr/libexec/gpg-preset-passphrase --passphrase % --preset "$grip" <<<"$GPG_PASSPHRASE"
+    fi
+
+    rpm --addsign --define "_gpg_name $uid" "${rpms[@]}"
 fi
 
 # VERIFY
