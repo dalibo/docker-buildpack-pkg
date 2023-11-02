@@ -51,6 +51,10 @@ if [ -v GPG_PRIVATE_KEY ] ; then
     fi
 
     rpm --addsign --define "_gpg_name $uid" "${rpms[@]}"
+
+    # test signature
+    gpg --armor --export "$uid" > /etc/pki/rpm-gpg/RPM-GPG-KEY-RPMBUILD
+    rpm --checksig "${rpms[@]}"
 fi
 
 # VERIFY
