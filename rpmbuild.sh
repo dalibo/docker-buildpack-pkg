@@ -64,6 +64,8 @@ fi
 retry yum install -y "${rpms[@]}"
 for rpm in "${rpms[@]}" ; do
     rpm -v --verify -p "${rpm}"
+    name="${rpm##*/}"
+    yum -y remove "${name%%-[0-9]*}"
 done
 
 # EXPORT
