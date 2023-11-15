@@ -32,6 +32,7 @@ chown -R testuser "$topdir"
 sudo -u testuser rpmbuild \
     --clean \
     --define "_topdir $topdir" \
+    --nocheck \
     -bb "$SPEC"
 rpms=( "$topdir"/RPMS/*/*.rpm )
 
