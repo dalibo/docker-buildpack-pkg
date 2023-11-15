@@ -62,7 +62,7 @@ fi
 
 retry yum install -y "${rpms[@]}"
 for rpm in "${rpms[@]}" ; do
-    rpm -vv --verify -p "${rpm}"
+    rpm -v --verify -p "${rpm}"
 done
 
 # EXPORT
