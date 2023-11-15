@@ -74,3 +74,5 @@ chown -v "$ownership" "${destdir%/*/*}" "${destdir%/*}"
 cp -avf "${rpms[@]}" "$destdir"
 chown -Rv "$ownership" "$destdir"
 find "$destdir" -type f -printf "%P\n"
+
+rm -rf "$topdir"
