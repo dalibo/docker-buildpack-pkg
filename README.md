@@ -14,7 +14,6 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 - `trixie`.
 - `bookworm`.
 - `bullseye`.
-- `centos6`.
 - `centos7`.
 - `jammy`.
 - `noble`.
