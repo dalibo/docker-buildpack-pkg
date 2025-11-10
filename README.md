@@ -18,7 +18,6 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 - `centos6`.
 - `centos7`.
 - `jammy`.
-- `jessie`.
 - `noble`.
 - `rockylinux8`.
 - `rockylinux9`.
