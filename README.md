@@ -22,4 +22,3 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 - `noble`.
 - `rockylinux8`.
 - `rockylinux9`.
-- `stretch`.
