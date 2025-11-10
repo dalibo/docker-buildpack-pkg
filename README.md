@@ -11,6 +11,7 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 
 ## Tags
 
+- `trixie`.
 - `bookworm`.
 - `bullseye`.
 - `buster`.
