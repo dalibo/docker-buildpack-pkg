@@ -1,28 +1,17 @@
-FROM dalibo/buildpack:bookworm AS downloader
-
-RUN set -ex; \
-    cd /tmp; \
-    curl --location --output nfpm.tar.gz https://github.com/goreleaser/nfpm/releases/download/v2.24.0/nfpm_2.24.0_Linux_x86_64.tar.gz ; \
-    tar --extract --file /tmp/nfpm.tar.gz nfpm; \
-    chmod +x ./nfpm; \
-    ./nfpm --version; \
-    :
-
 FROM dalibo/buildpack:bookworm
+
+COPY --from=goreleaser/nfpm:v2.43.4 /usr/bin/nfpm /usr/bin/
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/bin/
 
 RUN set -ex; \
     apt-get update -y; \
     apt-get install -y --no-install-recommends \
-        build-essential \
-        lsb-release \
         python3-pip \
-        ruby \
-        ruby-dev \
-        rubygems \
+        python3-setuptools \
+        pipx \
     ; \
     apt-get clean; \
     rm -rf \
-        /usr/share/postgresql/*/man \
         /var/lib/apt/lists/* \
         /var/log/apt \
         /var/log/dpkg.log \
@@ -30,19 +19,4 @@ RUN set -ex; \
     ; \
     :
 
-RUN set -ex; \
-    pip3 --no-cache-dir install --break-system-packages --upgrade \
-        pep440deb \
-        "virtualenv<20" \
-        virtualenv-tools \
-    ; \
-    :
-
-COPY --from=downloader /tmp/nfpm /usr/local/bin/nfpm
-
-RUN set -ex; \
-    nfpm --version; \
-    gem install --no-document fpm; \
-    gem cleanup; \
-    fpm --version; \
-    :
+RUN PIPX_BIN_DIR=/usr/local/bin pipx install pep440deb

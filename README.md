@@ -8,6 +8,12 @@ This image is built from
 RHEL entrypoint accepts SPEC and Source files as parameters.
 Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 
+## Tools
+
+- nfpm
+- Python and pip.
+- uv
+- rpmbuild
 
 ## Tags
 

@@ -1,5 +1,8 @@
 FROM dalibo/buildpack:rockylinux9
 
+COPY --from=goreleaser/nfpm:v2.43.4 /usr/bin/nfpm /usr/bin/
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/bin/
+
 RUN set -ex; \
     /usr/local/bin/retry yum -q -y install \
         rpm-build \
