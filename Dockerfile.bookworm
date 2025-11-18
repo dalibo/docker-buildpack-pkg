@@ -6,6 +6,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/bin/
 RUN set -ex; \
     apt-get update -y; \
     apt-get install -y --no-install-recommends \
+        dpkg-dev \
         python3-pip \
         python3-setuptools \
         pipx \
