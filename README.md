@@ -22,5 +22,6 @@ Outputs all RPMS in `_build/rhel<RHEL>/<specname>/`.
 - `bullseye`.
 - `jammy`.
 - `noble`.
-- `rockylinux8`.
+- `rockylinux10`.
 - `rockylinux9`.
+- `rockylinux8`.

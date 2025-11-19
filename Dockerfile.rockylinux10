@@ -1,0 +1,19 @@
+FROM dalibo/buildpack:rockylinux10
+
+COPY --from=goreleaser/nfpm:v2.43.4 /usr/bin/nfpm /usr/bin/
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/bin/
+
+RUN set -ex; \
+    /usr/local/bin/retry yum -q -y install \
+        rpm-build \
+        rpm-sign \
+        yum-utils \
+        python3 \
+        python3-pip \
+        python3-setuptools \
+    ; \
+    yum clean all ; \
+    :
+
+ADD rpmbuild.sh /usr/local/bin/rpmbuild.sh
+ENTRYPOINT ["/usr/local/bin/rpmbuild.sh"]
