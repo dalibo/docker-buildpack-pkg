@@ -9,7 +9,6 @@ RUN set -ex; \
         dpkg-dev \
         python3-pip \
         python3-setuptools \
-        pipx \
     ; \
     apt-get clean; \
     rm -rf \
@@ -20,4 +19,4 @@ RUN set -ex; \
     ; \
     :
 
-RUN PIPX_BIN_DIR=/usr/local/bin pipx install pep440deb
+RUN pip3 --no-cache-dir install pep440deb
