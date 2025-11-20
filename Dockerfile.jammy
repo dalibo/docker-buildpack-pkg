@@ -20,3 +20,4 @@ RUN set -ex; \
     :
 
 RUN pip3 --no-cache-dir install pep440deb
+RUN PIP_BREAK_SYSTEM_PACKAGES=1 pip3 --no-cache-dir install uv-build

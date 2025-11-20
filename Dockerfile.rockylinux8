@@ -14,5 +14,7 @@ RUN set -ex; \
     yum clean all ; \
     :
 
+RUN PIP_BREAK_SYSTEM_PACKAGES=1 pip3 --no-cache-dir install uv-build
+
 ADD rpmbuild.sh /usr/local/bin/rpmbuild.sh
 ENTRYPOINT ["/usr/local/bin/rpmbuild.sh"]
